@@ -5,8 +5,16 @@ spring:
   application:
     name: ead-service-registry #Nome que vai aparecer no eureka
 
+#autenticar no eureka quando tem spring security
+ead:
+  serviceRegistry:
+    username: serviceregistry
+    password: '123ead'
+
 eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+    service-url:
+      defaultZone: 'http://${ead.serviceRegistry.username}:${ead.serviceRegistry.password}@localhost:8761/eureka' #quando se coloca o spring secutiry
 
